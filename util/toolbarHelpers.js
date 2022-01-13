@@ -25,6 +25,7 @@ $('#toggleToolbarButton').click(function() {
     }, 300);
     ($('#overlay-slide').removeClass('out'));
   } else {
+    deactivateDrawing();
     ($('#overlay-slide').addClass('out'));
     setTimeout(() => {
       map.addControl(drawControl)
