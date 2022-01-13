@@ -4,6 +4,7 @@ const deactivateDrawing = () => {
     markerDrawer.disable();
     polyDrawer.disable();
     rectDrawer.disable();
+    activeButton = "";
     // turn off active button styling
     $(".leaflet-draw-toolbar-button-enabled").removeClass("leaflet-draw-toolbar-button-enabled");
     // remove instructions to cancel drawing
@@ -11,7 +12,8 @@ const deactivateDrawing = () => {
 }
 
 const activateDrawButton = buttonId => {
-  $(buttonId).addClass("leaflet-draw-toolbar-button-enabled");
+  activeButton = buttonId;
+  $(`#${buttonId}`).addClass("leaflet-draw-toolbar-button-enabled");
   $("#cancelText").css('visibility', 'visible');
 }
 

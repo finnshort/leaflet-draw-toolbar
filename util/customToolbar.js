@@ -7,11 +7,13 @@ const markerDrawer = new L.Draw.Marker(map, drawControl.options.draw.marker);
 const polyDrawer = new L.Draw.Polygon(map, drawControl.options.draw.polygon);
 const rectDrawer = new L.Draw.Rectangle(map, drawControl.options.draw.rectangle);
 
+let activeButton = ""; // empty string if no buttons are active
+
 // Draw function (de)activation steps to take when toggling toolbar items
 $('.toolbarButton').click(function() {
     const id = $(this).attr('id');
     // If this toolbar button was already activated, deactivate toolbar
-    if ($(this).hasClass("leaflet-draw-toolbar-button-enabled")){
+    if (activeButton === id){
       deactivateDrawing();
     } else {
     // Otherwise, deactivate any other active drawers and activate selected one
@@ -28,9 +30,8 @@ $('.toolbarButton').click(function() {
           break;
         default:
           console.log(`missing action for toolbar button id ${id}`);
-
       }
-      activateDrawButton(`#${id}`);
+      activateDrawButton(id);
     }
 });
 
